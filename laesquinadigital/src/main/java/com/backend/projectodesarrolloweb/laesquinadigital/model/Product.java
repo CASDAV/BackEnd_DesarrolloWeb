@@ -30,5 +30,17 @@ public class Product {
     @OneToOne(mappedBy = "product")
     protected PurchaseOrder order;
 
+    public Product() {
+    }
+
+    public Product(String name, String description, Double price, String image) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.image = image;
+    }
+
+    
+
 }
  
