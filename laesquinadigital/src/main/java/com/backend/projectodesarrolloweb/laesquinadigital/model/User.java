@@ -30,10 +30,10 @@ public class User {
     protected Date birthDate;
 
     @Column
+    @Email
     protected String email;
 
     @Column
-    @Email
     protected String password;
 
     @Enumerated(EnumType.STRING)
