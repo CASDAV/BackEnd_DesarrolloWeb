@@ -24,13 +24,9 @@ public class UsuariosService implements IUsuariosService {
         Optional<User> user = repository.findById(id);
 
         if(user.isPresent()){
-
             repository.delete(user.get());
-
         } else{
-
             throw new UserNotFoundException(id);
-        
         }       
     
     }
@@ -53,7 +49,6 @@ public class UsuariosService implements IUsuariosService {
     public User updateUser(User user, Long id) {
 
         return repository.findById(id).map(provider ->{
-
             provider.setName(user.getName());
             provider.setBirthDate(user.getBirthDate());
             provider.setEmail(user.getEmail());
@@ -61,11 +56,8 @@ public class UsuariosService implements IUsuariosService {
             provider.setPassword(user.getPassword());
 
             return repository.save(provider);
-
         }).orElseGet(()->{
-
             throw new UserNotFoundException(id);
-
         });
     }
 
@@ -73,7 +65,7 @@ public class UsuariosService implements IUsuariosService {
     public Page<User> getUsers(Pageable pageable) {
 
         return repository.findAll(pageable);
-        
+
     }
     
 }

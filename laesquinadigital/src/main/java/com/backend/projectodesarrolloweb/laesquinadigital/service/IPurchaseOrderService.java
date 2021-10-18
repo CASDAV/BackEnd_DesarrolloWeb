@@ -15,5 +15,5 @@ public interface IPurchaseOrderService {
 
     PurchaseOrder createOrder(PurchaseOrder order);
     
-    Page<PurchaseOrder> getUsers(Pageable pageable);
+    Page<PurchaseOrder> getOrders(Pageable pageable);
 }

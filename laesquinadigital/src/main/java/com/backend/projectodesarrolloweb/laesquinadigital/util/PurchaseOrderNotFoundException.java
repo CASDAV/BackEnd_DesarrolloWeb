@@ -4,11 +4,11 @@ package com.backend.projectodesarrolloweb.laesquinadigital.util;
 public class PurchaseOrderNotFoundException extends RuntimeException {
 
     public PurchaseOrderNotFoundException(Long id) {
-		super("Could not find PurchaseOrder by id:" + id);
+		super("Could not find Purchase Order by id:" + id);
 	}
 	
 	public PurchaseOrderNotFoundException(String identificacion) {
-		super("Could not find PurchaseOrder by identificacion:" + identificacion);
+		super("Could not find Purchase Order by identificacion:" + identificacion);
 	}
     
 }

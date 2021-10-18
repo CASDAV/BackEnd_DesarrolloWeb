@@ -21,6 +21,7 @@ public class PurchaseOrderService implements IPurchaseOrderService {
     public void deletePurchaseOrder(Long id) {
 
         Optional<PurchaseOrder> user = repository.findById(id);
+        
         if(user.isPresent()){
             repository.delete(user.get());
         } else{
@@ -41,9 +42,7 @@ public class PurchaseOrderService implements IPurchaseOrderService {
             return repository.save(provider);
 
         }).orElseGet(()->{
-
             throw new PurchaseOrderNotFoundException(id);
-
         });
     }
 
@@ -62,7 +61,7 @@ public class PurchaseOrderService implements IPurchaseOrderService {
     }
 
     @Override
-    public Page<PurchaseOrder> getUsers(Pageable pageable) {
+    public Page<PurchaseOrder> getOrders(Pageable pageable) {
         
         return repository.findAll(pageable);
     
