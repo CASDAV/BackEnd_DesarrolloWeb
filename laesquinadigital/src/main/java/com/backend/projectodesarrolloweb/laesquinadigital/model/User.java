@@ -23,7 +23,10 @@ public class User {
     protected Long id;
 
     @Column
-    protected String name;
+    protected String firstName;
+
+    @Column
+    protected String lastName;
 
     @Column
     @Temporal(TemporalType.DATE)
@@ -45,16 +48,20 @@ public class User {
     public User() {
     }
 
-    public User(String name, Date birthDate, String email, String password) {
-        this.name = name;
+    public User(String firstName, String lastName, Date birthDate, @Email String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.birthDate = birthDate;
         this.email = email;
         this.password = password;
-        this.userType = UserTp.CUSTOMER; 
     }
 
-    public User(String name, Date birthDate, String email, @Email String password, UserTp userType) {
-        this.name = name;
+    
+
+    public User(String firstName, String lastName, Date birthDate, @Email String email, String password,
+            UserTp userType) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.birthDate = birthDate;
         this.email = email;
         this.password = password;
@@ -69,12 +76,20 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Date getBirthDate() {

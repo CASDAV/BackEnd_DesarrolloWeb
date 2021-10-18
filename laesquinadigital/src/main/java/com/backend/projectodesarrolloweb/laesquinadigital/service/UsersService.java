@@ -49,7 +49,8 @@ public class UsersService implements IUsersService {
     public User updateUser(User user, Long id) {
 
         return repository.findById(id).map(provider ->{
-            provider.setName(user.getName());
+            provider.setFirstName(user.getFirstName());
+            provider.setLastName(user.getLastName());
             provider.setBirthDate(user.getBirthDate());
             provider.setEmail(user.getEmail());
             provider.setPassword(user.getPassword());

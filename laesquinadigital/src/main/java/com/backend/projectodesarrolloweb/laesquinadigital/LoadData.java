@@ -28,7 +28,8 @@ public class LoadData {
             UserTp tipo =UserTp.CUSTOMER;
             //Page<PurchaseOrder> orders = purchaseOrderRepository.findAll(PageRequest.of(1, 10, Sort.by(Direction.ASC, "ID")));
             User user = new User();
-            user.setName("Juanito Alimaña");
+            user.setFirstName("Juanito");
+            user.setLastName("Alimaña");
             user.setEmail("adsbuu@knshbd.com");
             user.setUserType(tipo);
             user.setPassword("123456");
@@ -39,7 +40,7 @@ public class LoadData {
 
             Optional<User> user2 = userRepository.loginMethod("adsbuu@knshbd.com", "123456");
 
-            System.out.println(user2.get().getName());
+            System.out.println(user2.get().getFirstName()+" "+user2.get().getLastName());
 
         };
 
