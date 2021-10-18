@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 
 @Entity
@@ -27,8 +26,8 @@ public class Product {
     @Column
     protected String image;
 
-    @OneToOne(mappedBy = "product")
-    protected PurchaseOrder order;
+    // @OneToMany(mappedBy = "product")
+    // protected List<> order;
 
     public Product() {
     }
@@ -80,13 +79,13 @@ public class Product {
         this.image = image;
     }
 
-    public PurchaseOrder getOrder() {
-        return order;
-    }
+    // public PurchaseOrder getOrder() {
+    //     return order;
+    // }
 
-    public void setOrder(PurchaseOrder order) {
-        this.order = order;
-    }
+    // public void setOrder(PurchaseOrder order) {
+    //     this.order = order;
+    // }
 
     
 
