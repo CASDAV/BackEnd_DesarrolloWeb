@@ -20,27 +20,40 @@ public class UsuariosService implements IUsuariosService {
 
     @Override
     public void deleteUser(Long id) {
+
         Optional<User> user = repository.findById(id);
+
         if(user.isPresent()){
+
             repository.delete(user.get());
+
         } else{
+
             throw new UserNotFoundException(id);
+        
         }       
+    
     }
 
     @Override
     public User getUserById(Long id) {
+
         return repository.findById(id).orElseThrow(()-> new UserNotFoundException(id));
+    
     }
 
     @Override
     public User createUser(User user) {
+
         return repository.save(user);
+
     }
     
     @Override
     public User updateUser(User user, Long id) {
+
         return repository.findById(id).map(provider ->{
+
             provider.setName(user.getName());
             provider.setBirthDate(user.getBirthDate());
             provider.setEmail(user.getEmail());
@@ -48,14 +61,19 @@ public class UsuariosService implements IUsuariosService {
             provider.setPassword(user.getPassword());
 
             return repository.save(provider);
+
         }).orElseGet(()->{
+
             throw new UserNotFoundException(id);
+
         });
     }
 
     @Override
     public Page<User> getUsers(Pageable pageable) {
+
         return repository.findAll(pageable);
+        
     }
     
 }
