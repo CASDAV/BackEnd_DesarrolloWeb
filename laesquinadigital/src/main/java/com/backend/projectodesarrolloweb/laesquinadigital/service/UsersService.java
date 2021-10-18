@@ -41,6 +41,8 @@ public class UsersService implements IUsersService {
     @Override
     public User createUser(User user) {
 
+        user.setUserType("CUSTOMER");
+
         return repository.save(user);
 
     }

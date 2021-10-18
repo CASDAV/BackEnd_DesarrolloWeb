@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
+
 
 @Entity
 public class User {
@@ -39,8 +38,8 @@ public class User {
     @Column
     protected String password;
 
-    @Enumerated(EnumType.STRING)
-    protected UserTp userType;
+    @Column
+    protected String  userType;
 
     @OneToMany(mappedBy = "customer")
     protected List<PurchaseOrder> orders;
@@ -54,12 +53,21 @@ public class User {
         this.birthDate = birthDate;
         this.email = email;
         this.password = password;
+        this.userType = "CUSTOMER";
     }
 
     
 
+    public User(String firstName, String lastName, @Email String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.userType = "CUSTOMER";
+    }
+
     public User(String firstName, String lastName, Date birthDate, @Email String email, String password,
-            UserTp userType) {
+            String userType) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
@@ -116,13 +124,6 @@ public class User {
         this.password = password;
     }
 
-    public UserTp getUserType() {
-        return userType;
-    }
-
-    public void setUserType(UserTp userType) {
-        this.userType = userType;
-    }
 
     public List<PurchaseOrder> getOrders() {
         return orders;
@@ -130,6 +131,14 @@ public class User {
 
     public void setOrders(List<PurchaseOrder> orders) {
         this.orders = orders;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
     

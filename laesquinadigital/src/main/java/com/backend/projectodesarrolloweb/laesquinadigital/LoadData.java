@@ -4,7 +4,6 @@ import java.util.Optional;
 
 import com.backend.projectodesarrolloweb.laesquinadigital.model.PurchaseOrder;
 import com.backend.projectodesarrolloweb.laesquinadigital.model.User;
-import com.backend.projectodesarrolloweb.laesquinadigital.model.UserTp;
 import com.backend.projectodesarrolloweb.laesquinadigital.repository.ProductRepository;
 import com.backend.projectodesarrolloweb.laesquinadigital.repository.PurchaseOrderRepository;
 import com.backend.projectodesarrolloweb.laesquinadigital.repository.UserRepository;
@@ -12,10 +11,6 @@ import com.backend.projectodesarrolloweb.laesquinadigital.repository.UserReposit
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 
 @Configuration
 public class LoadData {
@@ -25,14 +20,7 @@ public class LoadData {
     ProductRepository productRepository){
         return args -> {
             System.out.println("Probando la capa de de  persistencia");
-            UserTp tipo =UserTp.CUSTOMER;
-            //Page<PurchaseOrder> orders = purchaseOrderRepository.findAll(PageRequest.of(1, 10, Sort.by(Direction.ASC, "ID")));
-            User user = new User();
-            user.setFirstName("Juanito");
-            user.setLastName("Alimaña");
-            user.setEmail("adsbuu@knshbd.com");
-            user.setUserType(tipo);
-            user.setPassword("123456");
+            User user = new User("Juanito", "Alimaña", "adsbuu@knshbd.com","123456");
             
             userRepository.save(user);
 
