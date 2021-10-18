@@ -25,21 +25,21 @@ public class LoadData {
     ProductRepository productRepository){
         return args -> {
             System.out.println("Probando la capa de de  persistencia");
-            // UserTp tipo =UserTp.CUSTOMER;
+            UserTp tipo =UserTp.CUSTOMER;
             //Page<PurchaseOrder> orders = purchaseOrderRepository.findAll(PageRequest.of(1, 10, Sort.by(Direction.ASC, "ID")));
-            // User user = new User();
-            // user.setName("Juanito Alimaña");
-            // user.setEmail("adsbuu@knshbd.com");
-            // user.setUserType(tipo);
-            // user.setPassword("123456");
+            User user = new User();
+            user.setName("Juanito Alimaña");
+            user.setEmail("adsbuu@knshbd.com");
+            user.setUserType(tipo);
+            user.setPassword("123456");
             
-            // userRepository.save(user);
+            userRepository.save(user);
 
-            // user = new User();
+            user = new User();
 
-            // Optional<User> user2 = userRepository.findByEmailAndPassword("adsbuu@knshbd.com", "123456");
+            Optional<User> user2 = userRepository.loginMethod("adsbuu@knshbd.com", "123456");
 
-            // System.out.println(user2.get().getName());
+            System.out.println(user2.get().getName());
 
         };
 

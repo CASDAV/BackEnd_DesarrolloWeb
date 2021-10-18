@@ -6,7 +6,7 @@ import com.backend.projectodesarrolloweb.laesquinadigital.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-public interface IUsuariosService {
+public interface IUsersService {
     
     void deleteUser(Long id);
 
@@ -17,5 +17,7 @@ public interface IUsuariosService {
     User createUser(User user);
     
     Page<User> getUsers(Pageable pageable);
+
+    User loginUserService(String email, String password);
 
 }

@@ -13,7 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UsuariosService implements IUsuariosService {
+public class UsersService implements IUsersService {
 
     @Autowired
     private UserRepository repository;
@@ -67,5 +67,14 @@ public class UsuariosService implements IUsuariosService {
         return repository.findAll(pageable);
 
     }
+
+    @Override
+    public User loginUserService(String email, String password) {
+        
+        return repository.loginMethod(email, password).orElseThrow(()->new UserNotFoundException(email, password));
+
+    }
+
+    
     
 }

@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @ComponentScan("com.backend.projectodesarrolloweb.laesquinadigital")
 @EntityScan("com.backend.projectodesarrolloweb.laesquinadigital")
-@EnableJpaRepositories("com.backend.projectodesarrolloweb.laesquinadigital")
+@EnableJpaRepositories
 @EnableAutoConfiguration
 @SpringBootApplication
 public class LaesquinadigitalApplication {

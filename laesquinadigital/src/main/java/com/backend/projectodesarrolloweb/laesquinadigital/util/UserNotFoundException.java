@@ -10,4 +10,7 @@ public class UserNotFoundException extends RuntimeException {
 		super("Could not find User by identificacion:" + identificacion);
 	}
 
+	public UserNotFoundException(String email, String password) {
+		super("Could not find User by email: " + email+" and password: "+password);
+	}
 }
