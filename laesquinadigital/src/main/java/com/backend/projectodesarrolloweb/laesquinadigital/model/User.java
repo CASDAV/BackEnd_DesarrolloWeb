@@ -44,28 +44,11 @@ public class User {
     @OneToMany(mappedBy = "customer")
     protected List<PurchaseOrder> orders;
 
+    @OneToMany
+    protected List<ShoppingCart> carts;
+
     public User() {
     }
-
-    public User(String firstName, String lastName, Date birthDate, @Email String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
-        this.email = email;
-        this.password = password;
-        this.userType = "CUSTOMER";
-    }
-
-    
-
-    public User(String firstName, String lastName, @Email String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.userType = "CUSTOMER";
-    }
-
     public User(String firstName, String lastName, Date birthDate, @Email String email, String password,
             String userType) {
         this.firstName = firstName;
@@ -74,14 +57,6 @@ public class User {
         this.email = email;
         this.password = password;
         this.userType = userType;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getFirstName() {
@@ -141,6 +116,14 @@ public class User {
         this.userType = userType;
     }
 
-    
+    public List<ShoppingCart> getCarts() {
+        return carts;
+    }
 
+
+
+    public void setCarts(List<ShoppingCart> carts) {
+        this.carts = carts;
+    }
+    
 }
