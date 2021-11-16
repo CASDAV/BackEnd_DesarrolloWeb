@@ -1,5 +1,5 @@
 package com.backend.projectodesarrolloweb.laesquinadigital.repository;
 
-public interface SopingCartRepository {
+public interface SoppingCartRepository {
     
 }
