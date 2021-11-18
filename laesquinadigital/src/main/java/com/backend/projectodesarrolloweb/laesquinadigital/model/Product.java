@@ -26,9 +26,6 @@ public class Product {
     @Column
     protected String image;
 
-    // @OneToMany(mappedBy = "product")
-    // protected List<> order;
-
     public Product() {
     }
 
@@ -70,16 +67,6 @@ public class Product {
     public void setImage(String image) {
         this.image = image;
     }
-
-    // public PurchaseOrder getOrder() {
-    //     return order;
-    // }
-
-    // public void setOrder(PurchaseOrder order) {
-    //     this.order = order;
-    // }
-
-    
 
 }
  

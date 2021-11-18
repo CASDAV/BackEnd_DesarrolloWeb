@@ -2,7 +2,9 @@ package com.backend.projectodesarrolloweb.laesquinadigital.service;
 
 import java.util.Optional;
 
+import com.backend.projectodesarrolloweb.laesquinadigital.model.Product;
 import com.backend.projectodesarrolloweb.laesquinadigital.model.PurchaseOrder;
+import com.backend.projectodesarrolloweb.laesquinadigital.model.ShoppingCart;
 import com.backend.projectodesarrolloweb.laesquinadigital.repository.PurchaseOrderRepository;
 import com.backend.projectodesarrolloweb.laesquinadigital.util.PurchaseOrderNotFoundException;
 
@@ -35,10 +37,7 @@ public class PurchaseOrderService implements IPurchaseOrderService {
         
         return repository.findById(id).map(provider ->{
 
-            provider.setProduct(order.getProduct());
-            provider.setAmount(order.getAmount());
             provider.setFinalPrice(order.getFinalPrice());
-
             return repository.save(provider);
 
         }).orElseGet(()->{
@@ -57,11 +56,10 @@ public class PurchaseOrderService implements IPurchaseOrderService {
     public PurchaseOrder createOrder(PurchaseOrder order) {
 
         PurchaseOrder order2 = new PurchaseOrder();
+        order2.setPurchaseDate(order.getPurchaseDate());
         order2.setCustomer(order.getCustomer());
-        order2.setProduct(order.getProduct());
-        order2.setAmount(order.getAmount());
-        order2.setFinalPrice(order2.getProduct().getPrice()*order2.getAmount());
-        
+        order2.setCart(order.getCart());
+        order2.setFinalPrice(calcFinalPrice(order.getCart()));
         return repository.save(order);
 
     }
@@ -73,4 +71,16 @@ public class PurchaseOrderService implements IPurchaseOrderService {
     
     }
     
+
+    public Double calcFinalPrice(ShoppingCart shoppingCart){
+        
+        Double finalprice = 0d;
+
+        for(Product p: shoppingCart.getProducts()){
+            finalprice+=p.getPrice();
+        }
+
+        return finalprice;
+
+    }
 }

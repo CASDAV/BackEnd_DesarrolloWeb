@@ -22,9 +22,6 @@ public class PurchaseOrder {
 
     @ManyToOne
     protected User customer;
-    
-    @Column
-    protected Integer amount;
 
     @Column
     protected Double finalPrice;
@@ -36,12 +33,12 @@ public class PurchaseOrder {
     @Temporal(TemporalType.DATE)
     protected Date purchaseDate;
 
+
     public PurchaseOrder() {
     }
 
-    public PurchaseOrder(User customer, Integer amount, Double finalPrice, ShoppingCart cart, Date purchaseDate) {
+    public PurchaseOrder(User customer, Double finalPrice, ShoppingCart cart, Date purchaseDate) {
         this.customer = customer;
-        this.amount = amount;
         this.finalPrice = finalPrice;
         this.cart = cart;
         this.purchaseDate = purchaseDate;
@@ -53,14 +50,6 @@ public class PurchaseOrder {
 
     public void setCustomer(User customer) {
         this.customer = customer;
-    }
-
-    public Integer getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Integer amount) {
-        this.amount = amount;
     }
 
     public Double getFinalPrice() {

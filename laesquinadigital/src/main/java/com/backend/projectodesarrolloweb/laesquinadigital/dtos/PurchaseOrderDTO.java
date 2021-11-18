@@ -1,7 +1,9 @@
 package com.backend.projectodesarrolloweb.laesquinadigital.dtos;
 
+import java.util.Date;
+
+import com.backend.projectodesarrolloweb.laesquinadigital.model.ShoppingCart;
 import com.backend.projectodesarrolloweb.laesquinadigital.model.User;
-import com.backend.projectodesarrolloweb.laesquinadigital.model.Product;
 
 public class PurchaseOrderDTO {
 
@@ -9,26 +11,20 @@ public class PurchaseOrderDTO {
 
     protected User customer;
 
-    protected Product product;
-
-    protected Integer amount;
-
     protected Double finalPrice;
+
+    protected ShoppingCart cart;
+
+    protected Date purchaseDate;
 
     public PurchaseOrderDTO() {
     }
 
-    public PurchaseOrderDTO(Long id, User customer, Product product, Integer amount) {
-        this.id = id;
+    public PurchaseOrderDTO(User customer, Double finalPrice, ShoppingCart cart, Date purchaseDate) {
         this.customer = customer;
-        this.product = product;
-        this.amount = amount;
-    }
-
-    public PurchaseOrderDTO(User customer, Product product, Integer amount) {
-        this.customer = customer;
-        this.product = product;
-        this.amount = amount;
+        this.finalPrice = finalPrice;
+        this.cart = cart;
+        this.purchaseDate = purchaseDate;
     }
 
     public Long getId() {
@@ -47,28 +43,28 @@ public class PurchaseOrderDTO {
         this.customer = customer;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public Integer getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Integer amount) {
-        this.amount = amount;
-    }
-
     public Double getFinalPrice() {
         return finalPrice;
     }
 
     public void setFinalPrice(Double finalPrice) {
         this.finalPrice = finalPrice;
+    }
+
+    public ShoppingCart getCart() {
+        return cart;
+    }
+
+    public void setCart(ShoppingCart cart) {
+        this.cart = cart;
+    }
+
+    public Date getPurchaseDate() {
+        return purchaseDate;
+    }
+
+    public void setPurchaseDate(Date purchaseDate) {
+        this.purchaseDate = purchaseDate;
     }
 
     
