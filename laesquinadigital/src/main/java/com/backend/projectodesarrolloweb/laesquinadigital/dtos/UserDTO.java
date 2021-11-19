@@ -16,30 +16,26 @@ public class UserDTO {
 
     protected String password;
 
-    protected String  userType;
 
     public UserDTO() {
     }
 
-    public UserDTO(Long id, String firstName, String lastName, Date birthDate, String email, String password,
-            String userType) {
+    public UserDTO(Long id, String firstName, String lastName, Date birthDate, String email, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.email = email;
         this.password = password;
-        this.userType = userType;
     }
 
 
-    public UserDTO(String firstName, String lastName, Date birthDate, String email, String password, String userType) {
+    public UserDTO(String firstName, String lastName, Date birthDate, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.email = email;
         this.password = password;
-        this.userType = userType;
     }
 
     public Long getId() {
@@ -90,13 +86,4 @@ public class UserDTO {
         this.password = password;
     }
 
-    public String getUserType() {
-        return userType;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
-
-    
 }

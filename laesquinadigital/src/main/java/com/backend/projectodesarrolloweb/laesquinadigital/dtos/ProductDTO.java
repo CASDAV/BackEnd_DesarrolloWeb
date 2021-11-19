@@ -5,8 +5,7 @@ public class ProductDTO {
     protected Long id;
 
     protected String name;
-
-
+    
     protected String description;
 
     protected Double price;

@@ -38,9 +38,6 @@ public class User {
     @Column
     protected String password;
 
-    @Column
-    protected String  userType;
-
     @OneToMany(mappedBy = "customer")
     protected List<PurchaseOrder> orders;
 
@@ -49,14 +46,12 @@ public class User {
 
     public User() {
     }
-    public User(String firstName, String lastName, Date birthDate, @Email String email, String password,
-            String userType) {
+    public User(String firstName, String lastName, Date birthDate, @Email String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.email = email;
         this.password = password;
-        this.userType = userType;
     }
 
     public String getFirstName() {
@@ -108,19 +103,9 @@ public class User {
         this.orders = orders;
     }
 
-    public String getUserType() {
-        return userType;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
-
     public List<ShoppingCart> getCarts() {
         return carts;
     }
-
-
 
     public void setCarts(List<ShoppingCart> carts) {
         this.carts = carts;
