@@ -70,14 +70,5 @@ public class UsersService implements IUsersService {
         return repository.findAll(pageable);
 
     }
-
-    @Override
-    public User loginUserService(String email, String password) {
         
-        return repository.loginMethod(email, password).orElseThrow(()->new UserNotFoundException(email, password));
-
-    }
-
-    
-    
 }

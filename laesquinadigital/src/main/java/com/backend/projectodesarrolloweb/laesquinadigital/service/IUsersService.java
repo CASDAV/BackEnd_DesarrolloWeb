@@ -18,6 +18,4 @@ public interface IUsersService {
     
     Page<User> getUsers(Pageable pageable);
 
-    User loginUserService(String email, String password);
-
 }
