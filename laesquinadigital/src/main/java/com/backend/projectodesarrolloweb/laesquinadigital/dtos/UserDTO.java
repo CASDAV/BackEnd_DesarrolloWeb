@@ -16,6 +16,8 @@ public class UserDTO {
 
     protected String password;
 
+    protected RoleDTO rol;
+
 
     public UserDTO() {
     }
