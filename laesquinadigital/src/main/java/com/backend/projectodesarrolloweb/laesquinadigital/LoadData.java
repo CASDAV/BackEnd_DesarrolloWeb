@@ -11,8 +11,18 @@ import com.backend.projectodesarrolloweb.laesquinadigital.repository.UserReposit
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class LoadData {
     
+    @Bean
+    CommandLineRunner initDatabase(UserRepository userRepository, PasswordEncoder passwordEncoder){
+        return args ->{
+            User customer = new User();
+            customer.setEmail("testEmail@test.com");
+            customer.setPassword(passwordEncoder.encode("12345"));
+            userRepository.save(customer);
+        };
+    }
 }

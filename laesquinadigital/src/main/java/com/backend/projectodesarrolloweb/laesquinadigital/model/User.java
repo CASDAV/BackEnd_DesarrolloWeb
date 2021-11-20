@@ -30,7 +30,7 @@ public class User {
     @Column
     @Temporal(TemporalType.DATE)
     protected Date birthDate;
-
+    
     @Column
     @Email
     protected String email;

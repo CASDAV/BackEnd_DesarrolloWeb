@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -50,6 +52,11 @@ public class MyConfiguration {
 	
 	private Long getLongProperty(String key){
 		return Long.valueOf(env.getProperty(key));
+	}
+
+	@Bean
+	PasswordEncoder getEcoder(){
+		return new BCryptPasswordEncoder();
 	}
 
     
