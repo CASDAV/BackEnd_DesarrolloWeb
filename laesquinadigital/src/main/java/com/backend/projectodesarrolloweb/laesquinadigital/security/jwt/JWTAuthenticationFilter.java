@@ -3,6 +3,9 @@ package com.backend.projectodesarrolloweb.laesquinadigital.security.jwt;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -16,6 +19,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import io.jsonwebtoken.Jwts;
@@ -46,8 +50,23 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
             Authentication authResult) throws IOException, ServletException {
-        String token = Jwts.builder().setIssuedAt(new Date()).setIssuer("LaEsquinaDigital").setSubject(((org.springframework.security.core.userdetails.User)authResult.getPrincipal()).getUsername())
-        .setExpiration(new Date(System.currentTimeMillis() + 3600000)).signWith(SignatureAlgorithm.HS512, "12345").compact();
+        
+        final String authorities = authResult.getAuthorities().stream()
+        .map(GrantedAuthority::getAuthority).collect(Collectors.joining(","));
+        
+        final Map<String,Object> claims = new HashMap<>();
+        claims.put("Authorities", authorities);
+
+        String token = Jwts.builder()
+        .setIssuedAt(new Date())
+        .setIssuer("LaEsquinaDigital")
+        .setClaims(claims)
+        .setSubject(((org.springframework.security.core.userdetails.User)authResult.getPrincipal())
+        .getUsername())
+        .setExpiration(new Date(System.currentTimeMillis() + 3600000))
+        .signWith(SignatureAlgorithm.HS512, "12345")
+        .compact();
+
         response.addHeader("Authorization","Bearer "+ token); 
     }
 }

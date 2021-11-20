@@ -3,6 +3,8 @@ package com.backend.projectodesarrolloweb.laesquinadigital.rest;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.backend.projectodesarrolloweb.laesquinadigital.anotations.isAdmin;
+import com.backend.projectodesarrolloweb.laesquinadigital.anotations.isCustomerOrAdmin;
 import com.backend.projectodesarrolloweb.laesquinadigital.dtos.ProductDTO;
 import com.backend.projectodesarrolloweb.laesquinadigital.model.Product;
 import com.backend.projectodesarrolloweb.laesquinadigital.service.IProductService;
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("Products")
+@isAdmin
 public class ProductRest {
     
     @Autowired
@@ -41,6 +44,7 @@ public class ProductRest {
         return  mapper.map(productService.createProduct(product), ProductDTO.class);
     }
 
+    @isCustomerOrAdmin
     @GetMapping("{page}/{size}")
     public Page<ProductDTO> getProducta(@PathVariable("page") int pagina, @PathVariable("size") int size){
 

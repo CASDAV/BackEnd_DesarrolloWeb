@@ -4,6 +4,7 @@ package com.backend.projectodesarrolloweb.laesquinadigital.service;
 import java.util.Optional;
 
 import com.backend.projectodesarrolloweb.laesquinadigital.model.UserSys;
+import com.backend.projectodesarrolloweb.laesquinadigital.repository.RoleRepository;
 import com.backend.projectodesarrolloweb.laesquinadigital.repository.UserRepository;
 import com.backend.projectodesarrolloweb.laesquinadigital.util.UserNotFoundException;
 
@@ -15,6 +16,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UsersService implements IUsersService {
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Autowired
     private UserRepository repository;
@@ -45,8 +49,8 @@ public class UsersService implements IUsersService {
     @Override
     public UserSys createUser(UserSys user) {
         
-        
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRol(roleRepository.getById(2l));
 
         return repository.save(user);
 
