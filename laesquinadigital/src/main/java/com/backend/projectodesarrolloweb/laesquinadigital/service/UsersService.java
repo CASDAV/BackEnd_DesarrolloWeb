@@ -10,6 +10,7 @@ import com.backend.projectodesarrolloweb.laesquinadigital.util.UserNotFoundExcep
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,6 +18,9 @@ public class UsersService implements IUsersService {
 
     @Autowired
     private UserRepository repository;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Override
     public void deleteUser(Long id) {
@@ -40,6 +44,9 @@ public class UsersService implements IUsersService {
 
     @Override
     public UserSys createUser(UserSys user) {
+        
+        
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         return repository.save(user);
 
