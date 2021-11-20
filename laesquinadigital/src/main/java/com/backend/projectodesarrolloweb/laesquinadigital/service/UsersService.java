@@ -3,7 +3,7 @@ package com.backend.projectodesarrolloweb.laesquinadigital.service;
 
 import java.util.Optional;
 
-import com.backend.projectodesarrolloweb.laesquinadigital.model.User;
+import com.backend.projectodesarrolloweb.laesquinadigital.model.UserSys;
 import com.backend.projectodesarrolloweb.laesquinadigital.repository.UserRepository;
 import com.backend.projectodesarrolloweb.laesquinadigital.util.UserNotFoundException;
 
@@ -21,7 +21,7 @@ public class UsersService implements IUsersService {
     @Override
     public void deleteUser(Long id) {
 
-        Optional<User> user = repository.findById(id);
+        Optional<UserSys> user = repository.findById(id);
 
         if(user.isPresent()){
             repository.delete(user.get());
@@ -32,21 +32,21 @@ public class UsersService implements IUsersService {
     }
 
     @Override
-    public User getUserById(Long id) {
+    public UserSys getUserById(Long id) {
 
         return repository.findById(id).orElseThrow(()-> new UserNotFoundException(id));
     
     }
 
     @Override
-    public User createUser(User user) {
+    public UserSys createUser(UserSys user) {
 
         return repository.save(user);
 
     }
     
     @Override
-    public User updateUser(User user, Long id) {
+    public UserSys updateUser(UserSys user, Long id) {
 
         return repository.findById(id).map(provider ->{
             provider.setFirstName(user.getFirstName());
@@ -63,7 +63,7 @@ public class UsersService implements IUsersService {
     }
 
     @Override
-    public Page<User> getUsers(Pageable pageable) {
+    public Page<UserSys> getUsers(Pageable pageable) {
 
         return repository.findAll(pageable);
 

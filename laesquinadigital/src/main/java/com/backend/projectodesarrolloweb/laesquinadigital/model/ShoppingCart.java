@@ -18,7 +18,7 @@ public class ShoppingCart {
     protected Long id;
     
     @OneToOne
-    protected User user;
+    protected UserSys user;
 
     @OneToMany(fetch = FetchType.EAGER)
     protected List<Product> products;
@@ -26,16 +26,16 @@ public class ShoppingCart {
     public ShoppingCart() {
     }
 
-    public ShoppingCart(User user, List<Product> products) {
+    public ShoppingCart(UserSys user, List<Product> products) {
         this.user = user;
         this.products = products;
     }
 
-    public User getUser() {
+    public UserSys getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserSys user) {
         this.user = user;
     }
 

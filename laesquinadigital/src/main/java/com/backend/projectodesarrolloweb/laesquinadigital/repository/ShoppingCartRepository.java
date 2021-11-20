@@ -3,7 +3,7 @@ package com.backend.projectodesarrolloweb.laesquinadigital.repository;
 import java.util.Optional;
 
 import com.backend.projectodesarrolloweb.laesquinadigital.model.ShoppingCart;
-import com.backend.projectodesarrolloweb.laesquinadigital.model.User;
+import com.backend.projectodesarrolloweb.laesquinadigital.model.UserSys;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +15,6 @@ public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Long
 
     Optional<ShoppingCart> findById(Long id);
 
-    Page<ShoppingCart> findByUser(User user, Pageable pageable);
+    Page<ShoppingCart> findByUser(UserSys user, Pageable pageable);
 
 }

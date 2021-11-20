@@ -3,7 +3,7 @@ package com.backend.projectodesarrolloweb.laesquinadigital;
 import java.util.Optional;
 
 import com.backend.projectodesarrolloweb.laesquinadigital.model.PurchaseOrder;
-import com.backend.projectodesarrolloweb.laesquinadigital.model.User;
+import com.backend.projectodesarrolloweb.laesquinadigital.model.UserSys;
 import com.backend.projectodesarrolloweb.laesquinadigital.repository.ProductRepository;
 import com.backend.projectodesarrolloweb.laesquinadigital.repository.PurchaseOrderRepository;
 import com.backend.projectodesarrolloweb.laesquinadigital.repository.UserRepository;
@@ -19,7 +19,7 @@ public class LoadData {
     @Bean
     CommandLineRunner initDatabase(UserRepository userRepository, PasswordEncoder passwordEncoder){
         return args ->{
-            User customer = new User();
+            UserSys customer = new UserSys();
             customer.setEmail("testEmail@test.com");
             customer.setPassword(passwordEncoder.encode("12345"));
             userRepository.save(customer);

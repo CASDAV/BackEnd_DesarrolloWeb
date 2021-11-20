@@ -21,7 +21,7 @@ public class PurchaseOrder {
     protected Long id;
 
     @ManyToOne
-    protected User customer;
+    protected UserSys customer;
 
     @Column
     protected Double finalPrice;
@@ -37,18 +37,18 @@ public class PurchaseOrder {
     public PurchaseOrder() {
     }
 
-    public PurchaseOrder(User customer, Double finalPrice, ShoppingCart cart, Date purchaseDate) {
+    public PurchaseOrder(UserSys customer, Double finalPrice, ShoppingCart cart, Date purchaseDate) {
         this.customer = customer;
         this.finalPrice = finalPrice;
         this.cart = cart;
         this.purchaseDate = purchaseDate;
     }
 
-    public User getCustomer() {
+    public UserSys getCustomer() {
         return customer;
     }
 
-    public void setCustomer(User customer) {
+    public void setCustomer(UserSys customer) {
         this.customer = customer;
     }
 

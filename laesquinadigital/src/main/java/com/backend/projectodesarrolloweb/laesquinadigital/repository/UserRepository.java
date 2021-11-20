@@ -3,23 +3,23 @@ package com.backend.projectodesarrolloweb.laesquinadigital.repository;
 import java.util.List;
 import java.util.Optional;
 
-import com.backend.projectodesarrolloweb.laesquinadigital.model.User;
+import com.backend.projectodesarrolloweb.laesquinadigital.model.UserSys;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>{
+public interface UserRepository extends JpaRepository<UserSys, Long>{
     
-    Optional<User> findById(Long id);
+    Optional<UserSys> findById(Long id);
 
-    Optional<User> findByEmail(String email);
+    Optional<UserSys> findByEmail(String email);
 
-    List<User> findByFirstName(String firstName);
+    List<UserSys> findByFirstName(String firstName);
 
-    @Query(value = "SELECT u FROM User u WHERE u.email=?1 AND u.password=?2")
-    Optional<User> loginMethod(String email, String password);
+    @Query(value = "SELECT u FROM UserSys u WHERE u.email=?1 AND u.password=?2")
+    Optional<UserSys> loginMethod(String email, String password);
 
 }
 

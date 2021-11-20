@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.backend.projectodesarrolloweb.laesquinadigital.dtos.UserDTO;
-import com.backend.projectodesarrolloweb.laesquinadigital.model.User;
+import com.backend.projectodesarrolloweb.laesquinadigital.model.UserSys;
 import com.backend.projectodesarrolloweb.laesquinadigital.service.IUsersService;
 
 import org.modelmapper.ModelMapper;
@@ -36,7 +36,7 @@ public class UserRest {
     
     @PostMapping(value = "create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public UserDTO createUser(@RequestBody UserDTO dto){
-        User user = mapper.map(dto, User.class);
+        UserSys user = mapper.map(dto, UserSys.class);
 
         return  mapper.map(usersService.createUser(user), UserDTO.class);
     }
@@ -46,11 +46,11 @@ public class UserRest {
 
         Pageable pageable = PageRequest.of(pagina, size, Sort.by("id"));
 
-        Page<User> users = usersService.getUsers(pageable);
+        Page<UserSys> users = usersService.getUsers(pageable);
 
         List<UserDTO> res = new ArrayList<>(); 
 
-        for (User user : users.getContent()){
+        for (UserSys user : users.getContent()){
 
             res.add(mapper.map(user, UserDTO.class));
             
@@ -61,7 +61,7 @@ public class UserRest {
     @PutMapping(value = "update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public UserDTO updateUser(@RequestBody UserDTO dto, @PathVariable Long id){
 
-        User user = mapper.map(dto, User.class);
+        UserSys user = mapper.map(dto, UserSys.class);
 
         usersService.updateUser(user, id);
 

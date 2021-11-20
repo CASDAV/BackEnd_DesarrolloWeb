@@ -15,7 +15,7 @@ import javax.validation.constraints.Email;
 
 
 @Entity
-public class User {
+public class UserSys {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,9 +44,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     protected List<ShoppingCart> carts;
 
-    public User() {
+    public UserSys() {
     }
-    public User(String firstName, String lastName, Date birthDate, @Email String email, String password) {
+    public UserSys(String firstName, String lastName, Date birthDate, @Email String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
