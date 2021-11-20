@@ -27,7 +27,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter{
             throws IOException, ServletException {
         String header = req.getHeader("Authorization");
 
-        if (header == null || !header.startsWith("Bearer")) {
+        if (header == null || !header.startsWith("Bearer ")) {
             chain.doFilter(req, res);
             return;
         }
@@ -41,7 +41,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter{
         
         if (token != null) {
             // Se procesa el token y se recupera el usuario.
-            String user = Jwts.parser().setSigningKey("122345").parseClaimsJws(token.replace("Bearer", "")).getBody().getSubject();
+            String user = Jwts.parser().setSigningKey("12345").parseClaimsJws(token.replace("Bearer ", "")).getBody().getSubject();
         
             if (user != null) {
                 return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
