@@ -56,7 +56,7 @@ public class PurchaseOrderRest {
 
         PurchaseOrder order = mapper.map(dto, PurchaseOrder.class);
 
-        return  mapper.map(purchaseOrderService.createOrder(order), PurchaseOrderDTO.class);
+        return mapper.map(purchaseOrderService.createOrder(order), PurchaseOrderDTO.class);
 
     }
 

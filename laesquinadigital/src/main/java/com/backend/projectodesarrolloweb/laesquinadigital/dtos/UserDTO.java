@@ -22,22 +22,14 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    public UserDTO(Long id, String firstName, String lastName, Date birthDate, String email, String password) {
-        this.id = id;
+
+    public UserDTO(String firstName, String lastName, Date birthDate, String email, String password, RoleDTO rol) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.email = email;
         this.password = password;
-    }
-
-
-    public UserDTO(String firstName, String lastName, Date birthDate, String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
-        this.email = email;
-        this.password = password;
+        this.rol = rol;
     }
 
     public Long getId() {

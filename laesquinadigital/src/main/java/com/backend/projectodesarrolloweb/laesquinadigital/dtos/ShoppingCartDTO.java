@@ -1,10 +1,14 @@
 package com.backend.projectodesarrolloweb.laesquinadigital.dtos;
 
+import java.util.List;
+
 public class ShoppingCartDTO {
     
     protected Long id;
 
     protected UserDTO user;
+
+    protected List<ProductDTO> products;
 
     public ShoppingCartDTO() {
     }
