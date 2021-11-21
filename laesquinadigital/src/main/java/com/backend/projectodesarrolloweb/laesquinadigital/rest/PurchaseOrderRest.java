@@ -3,6 +3,9 @@ package com.backend.projectodesarrolloweb.laesquinadigital.rest;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.backend.projectodesarrolloweb.laesquinadigital.anotations.isAdmin;
+import com.backend.projectodesarrolloweb.laesquinadigital.anotations.isCustomer;
+import com.backend.projectodesarrolloweb.laesquinadigital.anotations.isCustomerOrAdmin;
 import com.backend.projectodesarrolloweb.laesquinadigital.dtos.PurchaseOrderDTO;
 import com.backend.projectodesarrolloweb.laesquinadigital.model.PurchaseOrder;
 import com.backend.projectodesarrolloweb.laesquinadigital.service.IPurchaseOrderService;
@@ -34,6 +37,7 @@ public class PurchaseOrderRest {
     @Autowired
     private ModelMapper mapper;
 
+    @isCustomerOrAdmin
     @GetMapping("{page}/{size}")
     public Page<PurchaseOrderDTO> getPurchaseOrders(@PathVariable("page") int pagina, @PathVariable("size") int size){
 
@@ -51,6 +55,7 @@ public class PurchaseOrderRest {
         return new PageImpl<>(res, pageable, res.size());
     }
 
+    @isCustomer
     @PostMapping(value = "create",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )
     public PurchaseOrderDTO createPurchaseOrder(@RequestBody PurchaseOrderDTO dto){
 
@@ -60,6 +65,7 @@ public class PurchaseOrderRest {
 
     }
 
+    @isAdmin
     @PutMapping(value = "actualizar/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public PurchaseOrderDTO uOrderDTO(@RequestBody PurchaseOrderDTO dto, @PathVariable Long id){
 
@@ -70,6 +76,7 @@ public class PurchaseOrderRest {
         return dto;
     }
 
+    @isAdmin
     @DeleteMapping("delete/{id}")
     public void deleteOrder(@PathVariable Long id){
         purchaseOrderService.deletePurchaseOrder(id);

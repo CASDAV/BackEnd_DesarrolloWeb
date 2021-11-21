@@ -46,7 +46,7 @@ public class ProductRest {
 
     @isCustomerOrAdmin
     @GetMapping("{page}/{size}")
-    public Page<ProductDTO> getProducta(@PathVariable("page") int pagina, @PathVariable("size") int size){
+    public Page<ProductDTO> getProducts(@PathVariable("page") int pagina, @PathVariable("size") int size){
 
         Pageable pageable = PageRequest.of(pagina, size, Sort.by("id"));
 

@@ -3,6 +3,7 @@ package com.backend.projectodesarrolloweb.laesquinadigital.rest;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.backend.projectodesarrolloweb.laesquinadigital.anotations.isAdmin;
 import com.backend.projectodesarrolloweb.laesquinadigital.dtos.UserDTO;
 import com.backend.projectodesarrolloweb.laesquinadigital.model.UserSys;
 import com.backend.projectodesarrolloweb.laesquinadigital.service.IUsersService;
@@ -41,6 +42,7 @@ public class UserRest {
         return  mapper.map(usersService.createUser(user), UserDTO.class);
     }
 
+    @isAdmin
     @GetMapping("{page}/{size}")
     public Page<UserDTO> getUsers(@PathVariable("page") int pagina, @PathVariable("size") int size){
 
@@ -58,6 +60,7 @@ public class UserRest {
         return new PageImpl<>(res, pageable, res.size());
     }
 
+    @isAdmin
     @PutMapping(value = "update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public UserDTO updateUser(@RequestBody UserDTO dto, @PathVariable Long id){
 
@@ -68,6 +71,7 @@ public class UserRest {
         return dto;
     }
 
+    @isAdmin
     @DeleteMapping("delete/{id}")
     public void deleteUser(@PathVariable Long id){
 

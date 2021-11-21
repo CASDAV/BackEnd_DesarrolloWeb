@@ -3,6 +3,9 @@ package com.backend.projectodesarrolloweb.laesquinadigital.rest;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.backend.projectodesarrolloweb.laesquinadigital.anotations.isAdmin;
+import com.backend.projectodesarrolloweb.laesquinadigital.anotations.isCustomer;
+import com.backend.projectodesarrolloweb.laesquinadigital.anotations.isCustomerOrAdmin;
 import com.backend.projectodesarrolloweb.laesquinadigital.dtos.ShoppingCartDTO;
 import com.backend.projectodesarrolloweb.laesquinadigital.model.ShoppingCart;
 import com.backend.projectodesarrolloweb.laesquinadigital.service.IShoppingCartService;
@@ -34,6 +37,7 @@ public class ShoppingCartRest {
     @Autowired
     private ModelMapper mapper;
 
+    @isCustomerOrAdmin
     @GetMapping("{page}/{size}")
     public Page<ShoppingCartDTO> getShoppingCarts(@PathVariable("page") int pagina, @PathVariable("size") int size){
 
@@ -51,6 +55,7 @@ public class ShoppingCartRest {
         return new PageImpl<>(res, pageable,res.size());
     }
 
+    @isCustomer
     @PostMapping(value = "create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ShoppingCartDTO createShoppingCart(@RequestBody ShoppingCartDTO dto){
 
@@ -60,6 +65,7 @@ public class ShoppingCartRest {
 
     }
 
+    @isCustomerOrAdmin
     @PutMapping(value = "actulizar/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ShoppingCartDTO uCartDTO(@RequestBody ShoppingCartDTO dto, @PathVariable Long id){
 
@@ -70,6 +76,7 @@ public class ShoppingCartRest {
         return dto;
     }
 
+    @isCustomerOrAdmin
     @DeleteMapping("delete/{id}")
     public void deleteShoppingCart(@PathVariable Long id){
         shoppingCartService.deleteShoppingCart(id);
