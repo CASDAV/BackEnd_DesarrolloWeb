@@ -3,7 +3,6 @@ package com.backend.projectodesarrolloweb.laesquinadigital.rest;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.backend.projectodesarrolloweb.laesquinadigital.anotations.isAdmin;
 import com.backend.projectodesarrolloweb.laesquinadigital.anotations.isCustomer;
 import com.backend.projectodesarrolloweb.laesquinadigital.anotations.isCustomerOrAdmin;
 import com.backend.projectodesarrolloweb.laesquinadigital.dtos.ShoppingCartDTO;
