@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PurchaseOrderRepository extends JpaRepository<PurchaseOrder, Long> {
-    
+
     Optional<PurchaseOrder> findById(Long id);
 
     Optional<PurchaseOrder> findByCart(ShoppingCart cart);

@@ -5,7 +5,9 @@ import java.util.Optional;
 import com.backend.projectodesarrolloweb.laesquinadigital.model.Product;
 import com.backend.projectodesarrolloweb.laesquinadigital.model.PurchaseOrder;
 import com.backend.projectodesarrolloweb.laesquinadigital.model.ShoppingCart;
+import com.backend.projectodesarrolloweb.laesquinadigital.model.UserSys;
 import com.backend.projectodesarrolloweb.laesquinadigital.repository.PurchaseOrderRepository;
+import com.backend.projectodesarrolloweb.laesquinadigital.repository.UserRepository;
 import com.backend.projectodesarrolloweb.laesquinadigital.util.PurchaseOrderNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class PurchaseOrderService implements IPurchaseOrderService {
 
     @Autowired
     private PurchaseOrderRepository repository;
+
+    @Autowired
+    private UserRepository uRepository;
 
     @Override
     public void deletePurchaseOrder(Long id) {
@@ -82,5 +87,13 @@ public class PurchaseOrderService implements IPurchaseOrderService {
 
         return finalprice;
 
+    }
+
+    @Override
+    public Page<PurchaseOrder> getOrdersPerUser(Long id, Pageable pageable) {
+
+        UserSys user = uRepository.getById(id);
+        
+        return repository.findByCustomer(user, pageable);
     }
 }

@@ -16,4 +16,6 @@ public interface IShoppingCartService {
     ShoppingCart createShoppingCart(ShoppingCart shoppingCart);
     
     Page<ShoppingCart> getCarts(Pageable pageable);
+
+    Page<ShoppingCart> getCartsPerUser(Long id, Pageable pageable);
 }

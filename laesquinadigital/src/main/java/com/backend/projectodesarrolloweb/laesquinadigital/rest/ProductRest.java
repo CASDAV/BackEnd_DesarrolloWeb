@@ -27,16 +27,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("Products")
+@RequestMapping("products")
 @isAdmin
 public class ProductRest {
-    
+
     @Autowired
     private IProductService productService;
 
     @Autowired
     private ModelMapper mapper;
-    
+
     @PostMapping(value = "create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ProductDTO createProdct(@RequestBody ProductDTO dto){
         Product product = mapper.map(dto, Product.class);

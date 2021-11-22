@@ -3,7 +3,9 @@ package com.backend.projectodesarrolloweb.laesquinadigital.service;
 import java.util.Optional;
 
 import com.backend.projectodesarrolloweb.laesquinadigital.model.ShoppingCart;
+import com.backend.projectodesarrolloweb.laesquinadigital.model.UserSys;
 import com.backend.projectodesarrolloweb.laesquinadigital.repository.ShoppingCartRepository;
+import com.backend.projectodesarrolloweb.laesquinadigital.repository.UserRepository;
 import com.backend.projectodesarrolloweb.laesquinadigital.util.ShoppingCartNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,9 @@ public class ShoppingCartService implements IShoppingCartService {
     
     @Autowired
     private ShoppingCartRepository repository;
+    
+    @Autowired
+    private UserRepository uRepository;
 
     @Override
     public void deleteShoppingCart(Long id) {
@@ -58,6 +63,14 @@ public class ShoppingCartService implements IShoppingCartService {
     @Override
     public Page<ShoppingCart> getCarts(Pageable pageable) {
         return repository.findAll(pageable);
+    }
+
+    @Override
+    public Page<ShoppingCart> getCartsPerUser(Long id, Pageable pageable){
+
+        UserSys user = uRepository.getById(id);
+
+        return repository.findByUser(user, pageable);
     }
     
 }

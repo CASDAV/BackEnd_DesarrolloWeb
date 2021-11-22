@@ -50,7 +50,7 @@ public class PurchaseOrderRest {
         for (PurchaseOrder order : orders.getContent()){
 
             res.add(mapper.map(order, PurchaseOrderDTO.class));
-            
+
         }
         return new PageImpl<>(res, pageable, res.size());
     }
@@ -82,4 +82,23 @@ public class PurchaseOrderRest {
         purchaseOrderService.deletePurchaseOrder(id);
     }
 
+    @isCustomerOrAdmin
+    @GetMapping("purchase/per/user/{id}/{page}/{size}")
+    public Page<PurchaseOrderDTO> purchasesPerUser(@PathVariable("id") Long id, @PathVariable("page") int page,
+    @PathVariable("size") int size){
+
+        Pageable pageable = PageRequest.of(page, size, Sort.by("id"));
+
+        Page<PurchaseOrder> orders = purchaseOrderService.getOrdersPerUser(id, pageable);
+
+        List<PurchaseOrderDTO> res = new ArrayList<>();
+
+        for (PurchaseOrder order : orders.getContent()) {
+
+            res.add(mapper.map(order, PurchaseOrderDTO.class));
+
+        }
+
+        return new PageImpl<>(res, pageable,res.size());
+    }
 }

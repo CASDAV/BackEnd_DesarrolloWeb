@@ -40,19 +40,18 @@ public class UserSys {
     @Column
     protected String password;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    protected Role rol;
+
     @OneToMany(mappedBy = "customer")
     protected List<PurchaseOrder> orders;
 
     @OneToMany(mappedBy = "user")
     protected List<ShoppingCart> carts;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    protected Role rol;
-
+    
     public UserSys() {
     }
-    
-    
 
     public UserSys(String firstName, String lastName, Date birthDate, @Email String email, String password,
             List<PurchaseOrder> orders, List<ShoppingCart> carts, Role rol) {

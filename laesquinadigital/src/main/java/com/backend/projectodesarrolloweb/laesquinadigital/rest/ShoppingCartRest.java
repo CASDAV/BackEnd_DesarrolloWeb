@@ -3,6 +3,7 @@ package com.backend.projectodesarrolloweb.laesquinadigital.rest;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.backend.projectodesarrolloweb.laesquinadigital.anotations.isAdmin;
 import com.backend.projectodesarrolloweb.laesquinadigital.anotations.isCustomer;
 import com.backend.projectodesarrolloweb.laesquinadigital.anotations.isCustomerOrAdmin;
 import com.backend.projectodesarrolloweb.laesquinadigital.dtos.ShoppingCartDTO;
@@ -36,7 +37,8 @@ public class ShoppingCartRest {
     @Autowired
     private ModelMapper mapper;
 
-    @isCustomerOrAdmin
+
+    @isAdmin
     @GetMapping("{page}/{size}")
     public Page<ShoppingCartDTO> getShoppingCarts(@PathVariable("page") int pagina, @PathVariable("size") int size){
 
@@ -79,6 +81,26 @@ public class ShoppingCartRest {
     @DeleteMapping("delete/{id}")
     public void deleteShoppingCart(@PathVariable Long id){
         shoppingCartService.deleteShoppingCart(id);
+    }
+
+    @isCustomerOrAdmin
+    @GetMapping("carts/per/user/{id}/{page}/{size}")
+    public Page<ShoppingCartDTO> getCartsPerUser(@PathVariable("id") Long id, @PathVariable ("page") int page,
+     @PathVariable("size") int size){
+
+        Pageable pageable = PageRequest.of(page, size, Sort.by("id"));
+
+        Page<ShoppingCart> carts = shoppingCartService.getCartsPerUser(id, pageable);
+
+        List<ShoppingCartDTO> res = new ArrayList<>();
+
+        for (ShoppingCart cart : carts.getContent()) {
+
+            res.add(mapper.map(cart, ShoppingCartDTO.class));
+
+        }
+
+        return new PageImpl<>(res, pageable,res.size());
     }
 
 }
