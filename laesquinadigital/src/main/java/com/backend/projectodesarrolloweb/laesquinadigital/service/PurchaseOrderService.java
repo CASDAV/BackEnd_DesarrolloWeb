@@ -93,7 +93,6 @@ public class PurchaseOrderService implements IPurchaseOrderService {
     public Page<PurchaseOrder> getOrdersPerUser(Long id, Pageable pageable) {
 
         UserSys user = uRepository.getById(id);
-        
         return repository.findByCustomer(user, pageable);
     }
 }

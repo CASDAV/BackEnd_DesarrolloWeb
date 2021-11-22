@@ -1,6 +1,7 @@
 package com.backend.projectodesarrolloweb.laesquinadigital.dtos;
 
 import java.util.Date;
+import java.util.List;
 
 public class UserDTO {
     
@@ -17,6 +18,10 @@ public class UserDTO {
     protected String password;
 
     protected RoleDTO rol;
+
+    // protected List<PurchaseOrderDTO> orders;
+
+    // protected List<ShoppingCartDTO> carts;
 
 
     public UserDTO() {
@@ -79,5 +84,36 @@ public class UserDTO {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
+    public RoleDTO getRol() {
+        return rol;
+    }
+
+
+    public void setRol(RoleDTO rol) {
+        this.rol = rol;
+    }
+
+
+    // public List<PurchaseOrderDTO> getOrders() {
+    //     return orders;
+    // }
+
+
+    // public void setOrders(List<PurchaseOrderDTO> orders) {
+    //     this.orders = orders;
+    // }
+
+
+    // public List<ShoppingCartDTO> getCarts() {
+    //     return carts;
+    // }
+
+
+    // public void setCarts(List<ShoppingCartDTO> carts) {
+    //     this.carts = carts;
+    // }
+
 
 }

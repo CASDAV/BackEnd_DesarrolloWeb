@@ -34,6 +34,14 @@ public class ShoppingCartDTO {
         this.user = user;
     }
 
+    public List<ProductDTO> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<ProductDTO> products) {
+        this.products = products;
+    }
+
     
 
 }
