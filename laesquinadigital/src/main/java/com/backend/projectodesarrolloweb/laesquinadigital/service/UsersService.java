@@ -81,5 +81,10 @@ public class UsersService implements IUsersService {
         return repository.findAll(pageable);
 
     }
+
+    @Override
+    public UserSys getUserInfo(String email) {
+        return repository.findByEmail(email).orElseThrow(()-> new UserNotFoundException(email));
+    }
         
 }

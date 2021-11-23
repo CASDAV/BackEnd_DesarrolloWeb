@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.backend.projectodesarrolloweb.laesquinadigital.anotations.isAdmin;
+import com.backend.projectodesarrolloweb.laesquinadigital.anotations.isCustomerOrAdmin;
 import com.backend.projectodesarrolloweb.laesquinadigital.dtos.UserDTO;
 import com.backend.projectodesarrolloweb.laesquinadigital.model.UserSys;
 import com.backend.projectodesarrolloweb.laesquinadigital.service.IUsersService;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -34,6 +36,13 @@ public class UserRest {
 
     @Autowired
     private ModelMapper mapper;
+
+    @isCustomerOrAdmin
+    @GetMapping("info/{email}")
+    public UserDTO getUserInfo(@PathVariable("email") String email){
+        return mapper.map(usersService.getUserInfo(email), UserDTO.class);
+    }
+    
     
     @PostMapping(value = "create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public UserDTO createUser(@RequestBody UserDTO dto){

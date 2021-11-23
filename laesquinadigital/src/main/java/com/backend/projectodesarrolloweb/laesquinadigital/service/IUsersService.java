@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface IUsersService {
+
+    UserSys getUserInfo(String email);
     
     void deleteUser(Long id);
 
