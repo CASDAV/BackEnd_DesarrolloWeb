@@ -38,8 +38,9 @@ public class UserRest {
     private ModelMapper mapper;
 
     @isCustomerOrAdmin
-    @GetMapping("info/{email}")
-    public UserDTO getUserInfo(@PathVariable("email") String email){
+    @GetMapping("info")
+    public UserDTO getInfo(@RequestParam(name="email") String email){
+
         return mapper.map(usersService.getUserInfo(email), UserDTO.class);
     }
     
