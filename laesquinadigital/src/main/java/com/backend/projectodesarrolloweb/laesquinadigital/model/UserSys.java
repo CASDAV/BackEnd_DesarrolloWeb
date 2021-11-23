@@ -33,7 +33,7 @@ public class UserSys {
     @Temporal(TemporalType.DATE)
     protected Date birthDate;
     
-    @Column
+    @Column(unique = true)
     @Email
     protected String email;
 
