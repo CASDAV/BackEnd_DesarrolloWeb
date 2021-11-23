@@ -26,6 +26,13 @@ public class LoadData {
     CommandLineRunner initAllDB(UserRepository userRepository, RoleRepository roleRepository, ProductRepository productRepository,  PasswordEncoder passwordEncoder, PurchaseOrderRepository purchaseRepository, ShoppingCartRepository cartRepository){
         return args ->{
 
+            roleRepository.deleteAll();
+            productRepository.deleteAll();
+            purchaseRepository.deleteAll();
+            cartRepository.deleteAll();
+            userRepository.deleteAll();
+
+
             Role adminRole = new Role();
 			adminRole.setName("ADMIN");
 			roleRepository.save(adminRole);
