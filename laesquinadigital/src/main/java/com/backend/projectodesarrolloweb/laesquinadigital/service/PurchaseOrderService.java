@@ -58,11 +58,11 @@ public class PurchaseOrderService implements IPurchaseOrderService {
     }
 
     @Override
-    public PurchaseOrder createOrder(PurchaseOrder order) {
+    public PurchaseOrder createOrder(PurchaseOrder order, Long id) {
 
         PurchaseOrder order2 = new PurchaseOrder();
         order2.setPurchaseDate(order.getPurchaseDate());
-        order2.setCustomer(order.getCustomer());
+        order2.setCustomer(uRepository.getById(id));
         order2.setCart(order.getCart());
         order2.setFinalPrice(calcFinalPrice(order.getCart()));
         return repository.save(order);

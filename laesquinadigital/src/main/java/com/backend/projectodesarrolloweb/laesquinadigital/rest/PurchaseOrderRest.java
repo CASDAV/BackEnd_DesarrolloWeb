@@ -56,12 +56,12 @@ public class PurchaseOrderRest {
     }
 
     @isCustomer
-    @PostMapping(value = "create",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )
-    public PurchaseOrderDTO createPurchaseOrder(@RequestBody PurchaseOrderDTO dto){
+    @PostMapping(value = "create/{id}",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )
+    public PurchaseOrderDTO createPurchaseOrder(@RequestBody PurchaseOrderDTO dto,@PathVariable("id")Long id){
 
         PurchaseOrder order = mapper.map(dto, PurchaseOrder.class);
 
-        return mapper.map(purchaseOrderService.createOrder(order), PurchaseOrderDTO.class);
+        return mapper.map(purchaseOrderService.createOrder(order, id), PurchaseOrderDTO.class);
 
     }
 

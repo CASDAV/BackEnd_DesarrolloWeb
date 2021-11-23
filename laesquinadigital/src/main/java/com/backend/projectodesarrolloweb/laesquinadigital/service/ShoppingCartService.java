@@ -51,10 +51,10 @@ public class ShoppingCartService implements IShoppingCartService {
     }
 
     @Override
-    public ShoppingCart createShoppingCart(ShoppingCart shoppingCart) {
+    public ShoppingCart createShoppingCart(ShoppingCart shoppingCart, Long id) {
         
         ShoppingCart cart = new ShoppingCart();
-        cart.setUser(shoppingCart.getUser());
+        cart.setUser(uRepository.getById(id));
         cart.setProducts(shoppingCart.getProducts());
 
         return repository.save(cart);

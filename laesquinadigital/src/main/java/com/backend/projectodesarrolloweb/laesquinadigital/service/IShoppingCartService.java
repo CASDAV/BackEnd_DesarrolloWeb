@@ -13,7 +13,7 @@ public interface IShoppingCartService {
 
     ShoppingCart getShoppingCartById(Long id);
 
-    ShoppingCart createShoppingCart(ShoppingCart shoppingCart);
+    ShoppingCart createShoppingCart(ShoppingCart shoppingCart, Long id);
     
     Page<ShoppingCart> getCarts(Pageable pageable);
 

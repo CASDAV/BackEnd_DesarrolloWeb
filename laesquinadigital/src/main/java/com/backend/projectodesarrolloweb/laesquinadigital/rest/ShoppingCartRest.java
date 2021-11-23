@@ -57,12 +57,12 @@ public class ShoppingCartRest {
     }
 
     @isCustomer
-    @PostMapping(value = "create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ShoppingCartDTO createShoppingCart(@RequestBody ShoppingCartDTO dto){
+    @PostMapping(value = "create/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ShoppingCartDTO createShoppingCart(@RequestBody ShoppingCartDTO dto, @PathVariable("id") Long id){
 
         ShoppingCart cart = mapper.map(dto, ShoppingCart.class);
 
-        return mapper.map(shoppingCartService.createShoppingCart(cart), ShoppingCartDTO.class);
+        return mapper.map(shoppingCartService.createShoppingCart(cart, id), ShoppingCartDTO.class);
 
     }
 

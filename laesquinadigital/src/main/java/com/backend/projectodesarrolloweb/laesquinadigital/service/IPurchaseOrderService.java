@@ -13,7 +13,7 @@ public interface IPurchaseOrderService {
 
     PurchaseOrder getOrderById(Long  id);
 
-    PurchaseOrder createOrder(PurchaseOrder order);
+    PurchaseOrder createOrder(PurchaseOrder order, Long id);
     
     Page<PurchaseOrder> getOrders(Pageable pageable);
 
