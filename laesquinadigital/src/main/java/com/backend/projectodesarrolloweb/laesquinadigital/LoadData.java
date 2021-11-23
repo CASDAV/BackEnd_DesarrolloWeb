@@ -39,7 +39,6 @@ public class LoadData {
             userRepository.save(customer);
 
             customer = new UserSys("TestCustomer", "Test", null, "testCustomer@test.com", passwordEncoder.encode("67890"), null,  new ArrayList<>(), customerRole);
-            
 
             List<Product> products = new ArrayList<>();
             products.add(new Product("Cerveza Poker", "La cerveza clasica para el parche", 3000d, "assets/img/poker.png"));
@@ -54,25 +53,21 @@ public class LoadData {
 
             products.add(new Product("Figura colecionable del Hombre  Araña", "Para que completes la colección o para que decores tu sitio favorito", 55000d, "https://http2.mlstatic.com/D_NQ_NP_823650-MCO32379227504_092019-V.jpg"));
 
-            products.add(new Product("Elantris", "La primera obra publicada de el maestro de la fantasia moderna, esta aventura te llevara a decubrir los secretos de la caida en desgracia de la mitica ciudad de elentris", 67000d, "https://juanjelopezponeletras.files.wordpress.com/2019/08/elantris.jpg"));
+            products.add(new Product("Elantris", "La primera obra publicada del maestro de la fantasia moderna, esta aventura te llevara a decubrir los secretos de la caida en desgracia de la mitica ciudad de elentris", 67000d, "https://juanjelopezponeletras.files.wordpress.com/2019/08/elantris.jpg"));
             productRepository.saveAll(products);
 
             List<Product> compras = new ArrayList<>();
-            int i=0;
+            List<Product> compras2 = new ArrayList<>();
+
             for (Product product : productRepository.findAll()) {
-                if (i%2!=0) compras.add(product);
+
+                compras.add(product);
+                compras2.add(product);
+
             }
 
             ShoppingCart  ne = new ShoppingCart(customer, compras);
-            // cartRepository.save(new ShoppingCart(customer, compras));
 
-            List<Product>compras2 = new ArrayList<>();
-            i=0;
-            for (Product product : productRepository.findAll()) {
-                if (i%2==0)compras2.add(product);
-
-                i++;
-            }
             ShoppingCart  ne2 = new ShoppingCart(customer, compras2);
 
             customer.getCarts().add(ne);
@@ -81,6 +76,7 @@ public class LoadData {
             cartRepository.saveAll(customer.getCarts());
 
 
+            
             // cartRepository.save(ne);
             // List<ShoppingCart> carritos = new ArrayList<>();
             // for (int index = 0; index < 10; index++) {
@@ -105,8 +101,6 @@ public class LoadData {
             //     purchaseRepository.save(order);
             // }
 
-            
-            
         };
 
     }
