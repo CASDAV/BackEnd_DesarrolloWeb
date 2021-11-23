@@ -1,6 +1,7 @@
 package com.backend.projectodesarrolloweb.laesquinadigital.service;
 
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import com.backend.projectodesarrolloweb.laesquinadigital.model.UserSys;
@@ -51,7 +52,8 @@ public class UsersService implements IUsersService {
         
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRol(roleRepository.getById(2l));
-
+        user.setCarts(new ArrayList<>());
+        user.setOrders(new ArrayList<>());
         return repository.save(user);
 
     }

@@ -38,7 +38,7 @@ public class LoadData {
             UserSys customer = new UserSys("TestAdmin", "Test", null, "testAdmin@test.com", passwordEncoder.encode("12345"), null, null, adminRole);
             userRepository.save(customer);
 
-            customer = new UserSys("TestCustomer", "Test", null, "testCustomer@test.com", passwordEncoder.encode("67890"), null,  new ArrayList<>(), customerRole);
+            customer = new UserSys("TestCustomer", "Test", null, "testCustomer@test.com", passwordEncoder.encode("67890"), new ArrayList<>(), new ArrayList<>(), customerRole);
 
             List<Product> products = new ArrayList<>();
             products.add(new Product("Cerveza Poker", "La cerveza clasica para el parche", 3000d, "assets/img/poker.png"));
@@ -70,37 +70,26 @@ public class LoadData {
 
             ShoppingCart  ne2 = new ShoppingCart(customer, compras2);
 
+            ShoppingCart ne3 = new ShoppingCart(customer, compras2);
+
             customer.getCarts().add(ne);
             customer.getCarts().add(ne2);
+            customer.getCarts().add(ne3);
+            
+            
+
+
+            PurchaseOrder pur = new PurchaseOrder(customer, 233456d, ne, null);
+            PurchaseOrder pur2 = new PurchaseOrder(customer, 233456d, ne2, null);
+
+            customer.getOrders().add(pur);
+            customer.getOrders().add(pur2);
+
             userRepository.save(customer);
             cartRepository.saveAll(customer.getCarts());
-
+            purchaseRepository.saveAll(customer.getOrders());
 
             
-            // cartRepository.save(ne);
-            // List<ShoppingCart> carritos = new ArrayList<>();
-            // for (int index = 0; index < 10; index++) {
-            //     carritos.add(new ShoppingCart(customer,compras));
-            // }
-            // customer.setCarts(carritos);
-
-            // List<PurchaseOrder> ordenes = new ArrayList<>();
-            // for (ShoppingCart cart : customer.getCarts()) {
-            //     ordenes.add(new PurchaseOrder(customer, 222222d, cart, null));
-            // }
-
-            // customer.setOrders(ordenes);
-
-            // userRepository.save(customer);
-
-            // for (ShoppingCart cart : carritos) {
-            //     cartRepository.save(cart);
-            // }
-
-            // for (PurchaseOrder order : ordenes) {
-            //     purchaseRepository.save(order);
-            // }
-
         };
 
     }

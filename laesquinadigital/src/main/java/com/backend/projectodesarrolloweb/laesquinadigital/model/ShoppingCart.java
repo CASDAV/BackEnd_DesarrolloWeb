@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class ShoppingCart {
@@ -17,7 +17,7 @@ public class ShoppingCart {
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
     
-    @OneToOne
+    @ManyToOne
     protected UserSys user;
 
     // @OneToMany(fetch = FetchType.EAGER)
