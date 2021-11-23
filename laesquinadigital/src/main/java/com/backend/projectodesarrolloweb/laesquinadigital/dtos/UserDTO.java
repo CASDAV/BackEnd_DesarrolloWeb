@@ -1,7 +1,6 @@
 package com.backend.projectodesarrolloweb.laesquinadigital.dtos;
 
 import java.util.Date;
-import java.util.List;
 
 public class UserDTO {
     

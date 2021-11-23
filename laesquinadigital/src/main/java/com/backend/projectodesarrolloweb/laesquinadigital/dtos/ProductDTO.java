@@ -63,6 +63,5 @@ public class ProductDTO {
         this.image = image;
     }
 
-    
-    
+
 }

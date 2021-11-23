@@ -137,5 +137,6 @@ public class UserSys {
     public void setRol(Role rol) {
         this.rol = rol;
     }
-        
+
+    
 }

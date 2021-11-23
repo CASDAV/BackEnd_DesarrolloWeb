@@ -7,7 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -20,7 +20,10 @@ public class ShoppingCart {
     @OneToOne
     protected UserSys user;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    // @OneToMany(fetch = FetchType.EAGER)
+    // protected List<Product> products;
+
+    @ManyToMany(fetch = FetchType.LAZY)
     protected List<Product> products;
 
     public ShoppingCart() {
